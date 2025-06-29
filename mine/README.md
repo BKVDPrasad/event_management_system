@@ -62,7 +62,7 @@ Installation & Setup
 Clone the repo
 
 bash
-git clone https://github.com/yourorg/event_management_system.git
+git clone https://github.com/BKVDPrasad/event_management_system.git
 cd event_management_system
 Create & activate a virtual environment
 
