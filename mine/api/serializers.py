@@ -30,6 +30,9 @@ class AttendeeRegistrationSerializer(serializers.ModelSerializer):
         fields = ['name', 'email']
 
 class AttendeeListSerializer(serializers.ModelSerializer):
+    event_name = serializers.CharField(source='event.name', read_only=True)
+
     class Meta:
         model = Attendee
-        fields = ['id', 'name', 'email', 'registered_at']
+        fields = ['id', 'name', 'email', 'registered_at', 'event_name']
+
