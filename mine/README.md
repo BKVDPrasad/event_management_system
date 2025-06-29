@@ -38,7 +38,6 @@ This project provides a simple API for managing events and attendee registration
 * **Python 3.8+:** The project is developed and tested with Python 3.8 or newer.
 * **Database:** Defaults to SQLite for simplicity in development. For production, a more robust database like PostgreSQL is recommended.
 * **Timezones:** Dates and times are handled with timezone awareness. API requests and responses for `DateTimeField` should use ISO 8601 format with UTC offset (e.g., `YYYY-MM-DDTHH:MM:SSZ` for UTC). Django stores `DateTimeField` values in UTC by default when `USE_TZ = True` (which is the default in new Django projects).
-* **API Client:** Assumes you will use a tool like cURL or Postman/Insomnia to interact with the API.
 
 ## Project Structure
 
