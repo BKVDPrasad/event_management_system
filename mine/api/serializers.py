@@ -14,13 +14,18 @@ class EventSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
     def validate(self, data):
-        """
-        Check that start_time is before end_time and in the future.
-        """
-        if data['start_time'] >= data['end_time']:
-            raise serializers.ValidationError("End time must be after start time.")
-        if data['start_time'] < timezone.now():
-            raise serializers.ValidationError("Start time must be in the future.")
+        # Only do this validation if at least one of the times is changing
+        if 'start_time' in data or 'end_time' in data:
+            # for PATCH, fill in missing values from the instance
+            start = data.get('start_time', getattr(self.instance, 'start_time', None))
+            end   = data.get('end_time',   getattr(self.instance, 'end_time',   None))
+
+            # Now do the sanity checks
+            if start >= end:
+                raise serializers.ValidationError("End time must be after start time.")
+            if start < timezone.now():
+                raise serializers.ValidationError("Start time must be in the future.")
+
         return data
 
 class AttendeeRegistrationSerializer(serializers.ModelSerializer):
